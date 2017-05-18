@@ -10,10 +10,39 @@ import UIKit
 
 class CLNavgationController: UINavigationController {
 
+    
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if childViewControllers.count > 0 {
+            viewController.hidesBottomBarWhenPushed = true
+            
+            if let vc = viewController as? CLBaseViewController {
+                var title  = "返回"
+                
+                title = childViewControllers.first?.title ?? "返回"
+                
+                
+                vc.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: title, fontSize: 16, target: self, action: #selector(popToParent), isBack: true)
+                
+            }
+        }
+        
+       
+        
+        
+        
+        super.pushViewController(viewController, animated: true)
+        
+    }
+    
+    @objc fileprivate func popToParent() -> () {
+        print(#function)
+        popViewController(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+         navigationBar.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,14 +51,5 @@ class CLNavgationController: UINavigationController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

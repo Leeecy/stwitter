@@ -12,17 +12,35 @@ class CLMainViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildControlers()
-        
+        setupComposeButton()
     }
+    //MARK: -监听方法
+    @objc fileprivate func composeStatus(){
+        print(#function)
+    }
+    
+    fileprivate lazy var composeBtn:UIButton = UIButton.yw_imageButton("tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
 }
 
 
 extension CLMainViewController{
     
+    fileprivate func setupComposeButton(){
+        tabBar.addSubview(composeBtn)
+        
+        let count = CGFloat(childViewControllers.count)
+        let w = tabBar.bounds.width / count - 1
+        
+        composeBtn.frame = tabBar.bounds.insetBy(dx: 2 * w, dy: 0)
+    
+        composeBtn.addTarget(self, action: #selector(composeStatus), for: .touchUpInside)
+    }
+    
     fileprivate func setupChildControlers(){
         let array = [
             ["clsName":"CLHomeViewController","title":"首页","imageName":"home"],
             ["clsName":"CLMessageViewController","title":"消息","imageName":"message_center"],
+            ["clsName":"UIViewController"],
             ["clsName":"CLDiscoverViewController","title":"发现","imageName":"discover"],
             ["clsName":"CLProfileViewController","title":"我","imageName":"profile"]
         
@@ -55,7 +73,9 @@ extension CLMainViewController{
         vc.tabBarItem.image = UIImage.init(named: "tabbar_" + imageName)
         
         vc.tabBarItem.selectedImage = UIImage.init(named: "tabbar_" + imageName + "_selected")?.withRenderingMode(.alwaysOriginal)
-        
+    
+        vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orange], for: .highlighted)
+    vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName:UIFont.systemFont(ofSize: 12)], for: .normal)
         let nav = CLNavgationController(rootViewController: vc)
         return nav
         

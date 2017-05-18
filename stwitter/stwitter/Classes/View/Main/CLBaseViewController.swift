@@ -10,10 +10,12 @@ import UIKit
 
 class CLBaseViewController: UIViewController {
 
+    lazy var navigationBar = UINavigationBar.init(frame:CGRect.init(x: 0, y: 0, width: UIScreen.yw_screenWidth(), height: 64))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        view.backgroundColor = UIColor.
+        setupUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +23,25 @@ class CLBaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override var title:String?{
+        didSet{
+            navigationItem.title = title
+        }
     }
-    */
+    
 
+
+}
+//MARK:-设置界面
+extension CLBaseViewController{
+    func setupUI() -> () {
+        view.backgroundColor = UIColor.yw_random()
+        view.addSubview(navigationBar)
+        navigationBar.barTintColor = UIColor.yw_color(withHex: 0xf6f6f6)
+        //设置navBar 的标题字体颜色
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.darkGray]
+        //设置系统按钮的文字渲染颜色  只对系统.plain 的方法有效
+        navigationBar.tintColor = UIColor.orange
+        
+    }
 }
