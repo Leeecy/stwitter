@@ -21,7 +21,7 @@ class CLNavgationController: UINavigationController {
                 title = childViewControllers.first?.title ?? "返回"
                 
                 
-                vc.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: title, fontSize: 16, target: self, action: #selector(popToParent), isBack: true)
+                vc.navItem.leftBarButtonItem = UIBarButtonItem.init(title: title, fontSize: 16, target: self, action: #selector(popToParent), isBack: true)
                 
             }
         }

@@ -18,6 +18,10 @@ class CLMainViewController: UITabBarController {
     @objc fileprivate func composeStatus(){
         print(#function)
     }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        return .portrait
+    }
+    
     
     fileprivate lazy var composeBtn:UIButton = UIButton.yw_imageButton("tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
 }

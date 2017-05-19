@@ -186,8 +186,7 @@
 		A414C9B81ECC5D8C00CFCC7F /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				A414C9F11ECD788F00CFCC7F /* CLNavgationController.swift */,
-				A414C9BC1ECC5E8C00CFCC7F /* CLMainViewController.swift */,
+				A414CA041ECE8F4E00CFCC7F /* 主控制器 */,
 				A414C9C01ECC5F1500CFCC7F /* CLBaseViewController.swift */,
 			);
 			path = Main;
@@ -262,6 +261,15 @@
 				A414C9F81ECD79D700CFCC7F /* UIImageView+WebImage.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A414CA041ECE8F4E00CFCC7F /* 主控制器 */ = {
+			isa = PBXGroup;
+			children = (
+				A414C9F11ECD788F00CFCC7F /* CLNavgationController.swift */,
+				A414C9BC1ECC5E8C00CFCC7F /* CLMainViewController.swift */,
+			);
+			name = "主控制器";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
