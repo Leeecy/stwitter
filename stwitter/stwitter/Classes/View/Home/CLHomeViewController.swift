@@ -8,28 +8,56 @@
 
 import UIKit
 
+private let cellId = "cellId"
+
 class CLHomeViewController: CLBaseViewController {
 
+    fileprivate lazy var statusList = [String]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for i in 0..<10 {
+            statusList.insert(i.description, at: 0)
+        }
 
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    override func loadData() {
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc fileprivate func showFridens(){
+        print(#function)
     }
-    */
 
+}
+//MARK: - 数据源方法
+extension CLHomeViewController{
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return statusList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId,for:indexPath)
+        cell.textLabel?.text = "测试数据" + statusList[indexPath.row]
+        return cell
+    }
+}
+
+extension CLHomeViewController{
+    override func setupUI() {
+        super.setupUI()
+        
+        navItem.leftBarButtonItem = UIBarButtonItem.init(title: "好友", target: self, action: #selector(showFridens))
+        
+        
+        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        
+        
+    }
+    
+    
 }
