@@ -4,12 +4,15 @@
 //
 //  Created by sun on 2017/5/17.
 //  Copyright © 2017年 sun. All rights reserved.
-//
+// b84a4b28bcb1d9b0eb37f05e7b939534
 
 import UIKit
 
 class CLBaseViewController: UIViewController {
-    var userLogin = false
+//    var userLogin = true
+    
+    //访客试图
+    var visitorInfoDict:[String:String]?
     
     
     var tableView:UITableView?
@@ -29,7 +32,7 @@ class CLBaseViewController: UIViewController {
         super.viewDidLoad()
 
         setupUI()
-        loadData()
+        CLNetworkManager.shared.userLogin ? loadData() : ()
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,17 +53,31 @@ class CLBaseViewController: UIViewController {
 
 
 }
+//  MARK - 访客监听
+extension CLBaseViewController{
+
+    @objc fileprivate func login(){
+        print(#function)
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: CLUserShouldLoginNotification), object: nil)
+    }
+    
+    @objc fileprivate func register(){
+        print(#function)
+    }
+}
+
 //MARK:-设置界面
 extension CLBaseViewController{
-    func setupUI() -> () {
+    fileprivate func setupUI() -> () {
         view.backgroundColor = UIColor.white
         automaticallyAdjustsScrollViewInsets = false
         setupNavigationBar()
 //        setupTableView()
-        userLogin ? setupTableView() : setupVisitorView()
+        CLNetworkManager.shared.userLogin ? setupTableView() : setupVisitorView()
     }
     
-    fileprivate func setupTableView(){
+    func setupTableView(){
         tableView = UITableView.init(frame: view.bounds,style: .plain)
         view.addSubview(tableView!)
         
@@ -96,7 +113,14 @@ extension CLBaseViewController{
         let visitorView = CLVisitorView.init(frame: view.bounds)
         view.insertSubview(visitorView, belowSubview: navigationBar)
         
+        visitorView.visitorInfo = visitorInfoDict
         
+        visitorView.loginBtn.addTarget(self, action: #selector(login), for: .touchUpInside)
+        
+        visitorView.registerBtn.addTarget(self, action: #selector(register), for: .touchUpInside)
+        
+        navItem.leftBarButtonItem = UIBarButtonItem.init(title: "注册", target: self, action: #selector(register))
+        navItem.rightBarButtonItem = UIBarButtonItem.init(title: "登录", target: self, action: #selector(login))
     }
 }
 

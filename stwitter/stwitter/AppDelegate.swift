@@ -8,6 +8,7 @@
 
 import UIKit
 
+import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,10 +16,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        
+        //设置用户授权显示通知
+        if #available(iOS 10.0, *) {
+            
+            
+            UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound,.carPlay ]) { (success, error) in
+                print("用户授权显示通知" + (success ? "成功" : "失败"))
+            
+                
+            }
+            
+            
+        }else{
+            //10.0之前旧版本  获取用户授权显示通知（上方的提示条、声音、BadgeNumber）
+            let notifySettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(notifySettings)
+        }
+        
         window = UIWindow()
         window?.backgroundColor = UIColor.white
         window?.rootViewController = CLMainViewController()
         window?.makeKeyAndVisible()
+        loadAppInfo()
         return true
     }
 
@@ -45,5 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    
+}
+extension AppDelegate {
+    fileprivate func loadAppInfo(){
+        
+    }
 }
 

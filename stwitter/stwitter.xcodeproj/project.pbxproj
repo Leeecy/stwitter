@@ -37,7 +37,15 @@
 		A414CA011ECD7EDD00CFCC7F /* CLDiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CA001ECD7EDD00CFCC7F /* CLDiscoverViewController.swift */; };
 		A414CA031ECD7EEF00CFCC7F /* CLProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A414CA021ECD7EEF00CFCC7F /* CLProfileViewController.swift */; };
 		A4C9DF8F1ECEDCDB006AAE33 /* CLNavgationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C9DF8E1ECEDCDB006AAE33 /* CLNavgationController.swift */; };
+		A4C9DF911ECFF596006AAE33 /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = A4C9DF901ECFF596006AAE33 /* main.json */; };
+		A4C9DF951ED3D379006AAE33 /* CLNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C9DF941ED3D379006AAE33 /* CLNetworkManager.swift */; };
+		A4C9DF981ED567E1006AAE33 /* CLNetworkManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C9DF971ED567E1006AAE33 /* CLNetworkManager+Extension.swift */; };
+		A4C9DF9A1ED67F91006AAE33 /* CLStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C9DF991ED67F91006AAE33 /* CLStatusModel.swift */; };
+		A4C9DF9C1ED68651006AAE33 /* CLStatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C9DF9B1ED68651006AAE33 /* CLStatusListViewModel.swift */; };
+		A4C9DFA01ED82F1B006AAE33 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C9DF9F1ED82F1B006AAE33 /* UserNotificationsUI.framework */; };
 		A4D388061ECECA87000D7ADD /* CLVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D388051ECECA87000D7ADD /* CLVisitorView.swift */; };
+		A4DA2C141ED920D40051C5A0 /* StwitterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DA2C131ED920D40051C5A0 /* StwitterHelper.swift */; };
+		A4DA2C171ED924B60051C5A0 /* CLOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DA2C161ED924B60051C5A0 /* CLOAuthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,7 +98,16 @@
 		A414CA001ECD7EDD00CFCC7F /* CLDiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLDiscoverViewController.swift; sourceTree = "<group>"; };
 		A414CA021ECD7EEF00CFCC7F /* CLProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLProfileViewController.swift; sourceTree = "<group>"; };
 		A4C9DF8E1ECEDCDB006AAE33 /* CLNavgationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLNavgationController.swift; sourceTree = "<group>"; };
+		A4C9DF901ECFF596006AAE33 /* main.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
+		A4C9DF941ED3D379006AAE33 /* CLNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLNetworkManager.swift; sourceTree = "<group>"; };
+		A4C9DF971ED567E1006AAE33 /* CLNetworkManager+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLNetworkManager+Extension.swift"; sourceTree = "<group>"; };
+		A4C9DF991ED67F91006AAE33 /* CLStatusModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLStatusModel.swift; sourceTree = "<group>"; };
+		A4C9DF9B1ED68651006AAE33 /* CLStatusListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLStatusListViewModel.swift; sourceTree = "<group>"; };
+		A4C9DF9D1ED82EE0006AAE33 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		A4C9DF9F1ED82F1B006AAE33 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		A4D388051ECECA87000D7ADD /* CLVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLVisitorView.swift; sourceTree = "<group>"; };
+		A4DA2C131ED920D40051C5A0 /* StwitterHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StwitterHelper.swift; path = stwitter/Classes/Tools/StwitterHelper.swift; sourceTree = SOURCE_ROOT; };
+		A4DA2C161ED924B60051C5A0 /* CLOAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLOAuthViewController.swift; sourceTree = "<group>"; };
 		EBB4E50B80E6D92109D594C8 /* Pods-stwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-stwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-stwitter/Pods-stwitter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4C9DFA01ED82F1B006AAE33 /* UserNotificationsUI.framework in Frameworks */,
 				95A23A3C5608C1D1CC3C5F90 /* Pods_stwitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,6 +136,8 @@
 		61688A5C490B7B46438618CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4C9DF9F1ED82F1B006AAE33 /* UserNotificationsUI.framework */,
+				A4C9DF9D1ED82EE0006AAE33 /* UserNotifications.framework */,
 				1C1EF5796D19782C0060C75A /* Pods_stwitter.framework */,
 			);
 			name = Frameworks;
@@ -157,8 +177,9 @@
 		A414C9B21ECC5D8C00CFCC7F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A414C9B31ECC5D8C00CFCC7F /* Model */,
 				A414C9B41ECC5D8C00CFCC7F /* Tools */,
+				A4DA2C131ED920D40051C5A0 /* StwitterHelper.swift */,
+				A414C9B31ECC5D8C00CFCC7F /* Model */,
 				A414C9B51ECC5D8C00CFCC7F /* View */,
 				A414C9BB1ECC5D8C00CFCC7F /* ViewModel */,
 			);
@@ -168,6 +189,7 @@
 		A414C9B31ECC5D8C00CFCC7F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4C9DF991ED67F91006AAE33 /* CLStatusModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -175,6 +197,7 @@
 		A414C9B41ECC5D8C00CFCC7F /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				A4C9DF931ED3D341006AAE33 /* Network */,
 				A414C9F31ECD79D700CFCC7F /* Extensions */,
 				A414C9C51ECD4DB300CFCC7F /* Additions */,
 			);
@@ -212,6 +235,7 @@
 		A414C9B81ECC5D8C00CFCC7F /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				A4DA2C151ED9249B0051C5A0 /* OAuth */,
 				A4D388041ECECA65000D7ADD /* Visitor */,
 				A414CA041ECE8F4E00CFCC7F /* 主控制器 */,
 				A414C9C01ECC5F1500CFCC7F /* CLBaseViewController.swift */,
@@ -238,6 +262,7 @@
 		A414C9BB1ECC5D8C00CFCC7F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A4C9DF9B1ED68651006AAE33 /* CLStatusListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -293,10 +318,20 @@
 		A414CA041ECE8F4E00CFCC7F /* 主控制器 */ = {
 			isa = PBXGroup;
 			children = (
+				A4C9DF901ECFF596006AAE33 /* main.json */,
 				A4C9DF8E1ECEDCDB006AAE33 /* CLNavgationController.swift */,
 				A414C9BC1ECC5E8C00CFCC7F /* CLMainViewController.swift */,
 			);
 			name = "主控制器";
+			sourceTree = "<group>";
+		};
+		A4C9DF931ED3D341006AAE33 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A4C9DF941ED3D379006AAE33 /* CLNetworkManager.swift */,
+				A4C9DF971ED567E1006AAE33 /* CLNetworkManager+Extension.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		A4D388041ECECA65000D7ADD /* Visitor */ = {
@@ -305,6 +340,14 @@
 				A4D388051ECECA87000D7ADD /* CLVisitorView.swift */,
 			);
 			path = Visitor;
+			sourceTree = "<group>";
+		};
+		A4DA2C151ED9249B0051C5A0 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				A4DA2C161ED924B60051C5A0 /* CLOAuthViewController.swift */,
+			);
+			path = OAuth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +414,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4C9DF911ECFF596006AAE33 /* main.json in Resources */,
 				A414C9AB1ECC52FC00CFCC7F /* LaunchScreen.storyboard in Resources */,
 				A414C9A81ECC52FC00CFCC7F /* Assets.xcassets in Resources */,
 			);
@@ -432,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A414C9BD1ECC5E8C00CFCC7F /* CLMainViewController.swift in Sources */,
+				A4C9DF9A1ED67F91006AAE33 /* CLStatusModel.swift in Sources */,
 				A414C9FA1ECD79D700CFCC7F /* String+Extension.swift in Sources */,
 				A414C9EB1ECD4DB300CFCC7F /* UIImage+Extension.m in Sources */,
 				A414C9ED1ECD4DB300CFCC7F /* UIScreen+CZAddition.m in Sources */,
@@ -440,14 +485,19 @@
 				A414C9EF1ECD4DB300CFCC7F /* UIView+JKFrame.m in Sources */,
 				A414C9E41ECD4DB300CFCC7F /* NSAttributedString+CZAdditon.m in Sources */,
 				A414C9E61ECD4DB300CFCC7F /* NSString+CZBase64.m in Sources */,
+				A4DA2C141ED920D40051C5A0 /* StwitterHelper.swift in Sources */,
 				A414C9F01ECD4DB300CFCC7F /* UIViewController+CZAddition.m in Sources */,
 				A414C9E51ECD4DB300CFCC7F /* NSObject+CZRuntime.m in Sources */,
 				A414C9F91ECD79D700CFCC7F /* Bundle+Extension.swift in Sources */,
+				A4C9DF951ED3D379006AAE33 /* CLNetworkManager.swift in Sources */,
 				A4C9DF8F1ECEDCDB006AAE33 /* CLNavgationController.swift in Sources */,
 				A414C9FD1ECD79D700CFCC7F /* UIImageView+WebImage.swift in Sources */,
 				A414CA031ECD7EEF00CFCC7F /* CLProfileViewController.swift in Sources */,
+				A4C9DF9C1ED68651006AAE33 /* CLStatusListViewModel.swift in Sources */,
 				A414C9C41ECD4B6F00CFCC7F /* CLHomeViewController.swift in Sources */,
 				A4D388061ECECA87000D7ADD /* CLVisitorView.swift in Sources */,
+				A4DA2C171ED924B60051C5A0 /* CLOAuthViewController.swift in Sources */,
+				A4C9DF981ED567E1006AAE33 /* CLNetworkManager+Extension.swift in Sources */,
 				A414C9E31ECD4DB300CFCC7F /* NSArray+Log.m in Sources */,
 				A414C9C11ECC5F1500CFCC7F /* CLBaseViewController.swift in Sources */,
 				A414C9FF1ECD7EAE00CFCC7F /* CLMessageViewController.swift in Sources */,
