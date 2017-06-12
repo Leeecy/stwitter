@@ -39,9 +39,9 @@ extension CLNetworkManager{
     }
     
     func unreadCount(completion:@escaping (_ unreadCount:Int) ->()) {
-//        guard let uid = uid else {
-//            return
-//        }
+        guard let uid = userAccount.uid else {
+            return
+        }
         
         let urlStr = "https://rm.api.weibo.com/2/remind/unread_count.json"
         let params = ["uid":uid]
@@ -57,10 +57,27 @@ extension CLNetworkManager{
     }
     
 }
+//MARK -用户信息
+extension CLNetworkManager{
+    func loadUserInfo(completion:@escaping (_ dict: [String:Any])->()) {
+        guard let uid = userAccount.uid else {
+            return
+        }
+        
+        let urlStr = "https://api.weibo.com/2/users/show.json"
+        let  params = ["uid":uid]
+        
+        tokenRequest(URLString: urlStr, parameters: params) { (json, isSuccess) in
+            print(json ?? [:])
+            completion(json as? [String : Any] ?? [:])
+            
+        }
+    }
+}
 
 //MARK -OAuth
 extension CLNetworkManager{
-    func loadAccessToken(code:String) -> () {
+    func loadAccessToken(code:String,completion:@escaping (_ isSuccess: Bool)->()){
         let urlStr = "https://api.weibo.com/oauth2/access_token"
         
         let params = ["client_id":CLAppKey,
@@ -71,7 +88,17 @@ extension CLNetworkManager{
                       ]
         
         request(method: .POST, URLString: urlStr, parameters: params) { (json, isSuccess) in
-            print("json---\(String(describing: json))")
+//            print("json---\(String(describing: json))")
+            //字典-》模型
+            self.userAccount.yy_modelSet(with: json as? [String : Any] ?? [:])
+            
+            self.loadUserInfo(completion: { (json) in
+                print("userAccount---\(self.userAccount)")
+                self.userAccount.yy_modelSet(with: json)
+                self.userAccount.saveAccount()
+                completion(isSuccess)
+            })
+           
         }
         
         

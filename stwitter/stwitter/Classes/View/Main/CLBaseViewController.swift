@@ -33,12 +33,15 @@ class CLBaseViewController: UIViewController {
 
         setupUI()
         CLNetworkManager.shared.userLogin ? loadData() : ()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess), name: NSNotification.Name(rawValue: CLUserLoginSuccessedNotification), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+  
     
     override var title:String?{
         didSet{
@@ -55,6 +58,14 @@ class CLBaseViewController: UIViewController {
 }
 //  MARK - 访客监听
 extension CLBaseViewController{
+    
+     @objc fileprivate func loginSuccess(){
+        print(#function)
+        navItem.leftBarButtonItem = nil
+        navItem.rightBarButtonItem = nil
+        view = nil
+        NotificationCenter.default.removeObserver(self)
+    }
 
     @objc fileprivate func login(){
         print(#function)
@@ -87,6 +98,10 @@ extension CLBaseViewController{
         
         
         tableView?.contentInset = UIEdgeInsetsMake(navigationBar.bounds.height, 0, 0, 0)
+        
+        
+        //设置导航条的缩进
+        tableView?.scrollIndicatorInsets  = tableView!.contentInset
         
         //刷新
         refreshControl = UIRefreshControl()
@@ -151,7 +166,7 @@ extension CLBaseViewController:UITableViewDelegate,UITableViewDataSource{
             loadData()
         }
         
-        print("section-------\(section)")
+//        print("section-------\(section)")
         
         
         

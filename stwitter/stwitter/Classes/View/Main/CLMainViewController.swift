@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class CLMainViewController: UITabBarController {
     // 定时器
     fileprivate var timer:Timer?
@@ -19,6 +19,8 @@ class CLMainViewController: UITabBarController {
         setupComposeButton()
         setupTimer()
         
+        
+        setupNewfeatureView()
         //
         delegate = self //as? UITabBarControllerDelegate
         
@@ -28,9 +30,24 @@ class CLMainViewController: UITabBarController {
     
     @objc fileprivate func userLogin(n:Notification) -> () {
         print("用户登录通知\(n)")
-        let nav = UINavigationController.init(rootViewController: CLOAuthViewController())
+        var deadlineTime = DispatchTime.now()
+        if n.object != nil {
+            SVProgressHUD.setDefaultMaskType(.gradient)
+            SVProgressHUD.showInfo(withStatus: "用户登录已经超时，需要重新登录")
+            //修改延迟时间
+            deadlineTime = DispatchTime.now() + 2
+        }
         
-        present(nav, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            SVProgressHUD.setDefaultMaskType(.clear)
+            //展现登录控制器
+            let nav = UINavigationController.init(rootViewController: CLOAuthViewController())
+            
+            self.present(nav, animated: true, completion: nil)
+        }
+
+        
+      
         
     }
     
@@ -77,7 +94,12 @@ extension CLMainViewController:UITabBarControllerDelegate{
                 vc.loadData()
             })
             
+            vc.tabBarItem.badgeValue = nil
+            UIApplication.shared.applicationIconBadgeNumber = 0
+            
         }
+        
+        
         
         //判断目标控制器是否是 UIViewController 不包含子类
         return !viewController.isMember(of: UIViewController.self)
@@ -201,6 +223,34 @@ extension CLMainViewController{
         
     }
 
+}
 
+// MARK: - 新特性视图处理
+extension CLMainViewController {
+    
+    fileprivate func setupNewfeatureView(){
+        //判断是否登录
+        if !CLNetworkManager.shared.userLogin {
+            
+            return
+        }
+        
+        let v = isNewVersion ? CLNewFeatureView.newFeatureView() : CLWelcomeView.welcomeView()
+        view.addSubview(v)
+
+    }
+    
+    private var isNewVersion:Bool{
+        //取出当前是版本号
+        let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        //取出保存在偏好设置的版本号
+        let beforeVersion = UserDefaults.standard.string(forKey: "CLVersionKey") ?? ""
+        
+        //将当前的版本号偏好设置
+        UserDefaults.standard.set(currentVersion, forKey: "CLVersionKey")
+        
+        //返回 连个版本号是否一致
+        return currentVersion != beforeVersion
+    }
 
 }

@@ -22,3 +22,16 @@ let KUsername  = "18627930936"
 let KPassword = "qazwsx123123"
 /// 用户需要登录通知
 let CLUserShouldLoginNotification = "CLUserShouldLoginNotification"
+
+/// 成功登录通知
+let CLUserLoginSuccessedNotification = "CLUserLoginSuccessedNotification"
+
+/// 配图视图外侧的间距
+let pictureOutterMargin = CGFloat(12)
+/// 配图视图内侧的间距
+let pictureInnerMargin = CGFloat(3)
+/// 视图 总宽度
+let CLStatusPictureViewWidth = UIScreen.yw_screenWidth() - 2 * pictureOutterMargin
+
+let CLStatusPictureItemWith = (CLStatusPictureViewWidth - 2 * pictureInnerMargin) / 3
+

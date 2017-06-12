@@ -81,7 +81,17 @@ extension CLOAuthViewController:UIWebViewDelegate{
         let code =  request.url?.query?.substring(from: "code=".endIndex)
         
         print("获取授权ma---\(String(describing: code))")
-        CLNetworkManager.shared.loadAccessToken(code: code!)
+      
+        
+         CLNetworkManager.shared.loadAccessToken(code: code!) { (isSuccess) in
+            if isSuccess{
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: CLUserLoginSuccessedNotification), object: nil, userInfo: nil)
+                
+//                self.close()
+            }else{
+                SVProgressHUD.showInfo(withStatus: "网络请求失败")
+            }
+        }
         
         return true
     }

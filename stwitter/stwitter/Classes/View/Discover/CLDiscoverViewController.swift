@@ -13,7 +13,8 @@ class CLDiscoverViewController: CLBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+//        CLNetworkManager.shared.userAccount.access_token = nil
+//        print("修改了token")
     }
 
     override func didReceiveMemoryWarning() {

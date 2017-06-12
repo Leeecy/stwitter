@@ -12,7 +12,7 @@ import Foundation
 fileprivate let maxPullupTryTimes = 3
 
 class CLStatusListViewModel{
-    lazy var statusList = [CLStatusModel]()
+    lazy var statusList = [CLStatusViewModel]()
     
     ///上拉刷新错误次数
     fileprivate var pullupErrorTimes = 0
@@ -26,12 +26,28 @@ class CLStatusListViewModel{
             return
         }
         
-        let since_id = isPullup ? 0 :(statusList.first?.id ?? 0)
+        let since_id = isPullup ? 0 :(statusList.first?.status.id ?? 0)
         
-        let max_id = !isPullup ? 0 : (statusList.last?.id ?? 0)
+        let max_id = !isPullup ? 0 : (statusList.last?.status.id ?? 0)
         
         
         CLNetworkManager.shared.statusList (since_id:since_id,max_id:max_id) { (list, isSuccess) in
+            
+            if !isSuccess{
+                completion(false, false)
+                return
+            }
+            
+            var array = [CLStatusViewModel]()
+            
+            for dict in list ?? [] {
+                guard let model = CLStatusModel.yy_model(with: dict) else{
+                    continue
+                }
+                array.append(CLStatusViewModel(model: model))
+            }
+            
+            print(array)
             
             
             
@@ -41,10 +57,7 @@ class CLStatusListViewModel{
             
             
             //字典转模型
-            guard let array = NSArray.yy_modelArray(with: CLStatusModel.self, json: list ?? []) as? [CLStatusModel] else{
-                completion(isSuccess, false)
-                return
-            }
+         
             print("刷新到\(array.count) 条数据")
             
             if isPullup{
@@ -59,11 +72,17 @@ class CLStatusListViewModel{
                 //完成回调
                 completion(isSuccess, false)
             }else{
+                self .cacheSingleImage(list: array)
+                
                 completion(isSuccess, true)
             }
             
             
             
         }
+    }
+    
+    fileprivate func cacheSingleImage(list:[CLStatusViewModel]) -> () {
+        
     }
 }

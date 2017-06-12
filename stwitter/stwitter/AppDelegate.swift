@@ -7,8 +7,9 @@
 //
 
 import UIKit
-
 import UserNotifications
+import AFNetworking
+import SVProgressHUD
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -24,11 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .alert, .sound,.carPlay ]) { (success, error) in
                 print("用户授权显示通知" + (success ? "成功" : "失败"))
-            
-                
             }
-            
-            
         }else{
             //10.0之前旧版本  获取用户授权显示通知（上方的提示条、声音、BadgeNumber）
             let notifySettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -68,6 +65,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
 }
+extension AppDelegate {
+    fileprivate func setupAdditions(){
+        SVProgressHUD.setMinimumDismissTimeInterval(1)
+        //2.设置网络加载指示器
+        AFNetworkActivityIndicatorManager.shared().isEnabled = true
+    }
+}
+
 extension AppDelegate {
     fileprivate func loadAppInfo(){
         

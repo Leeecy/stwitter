@@ -27,11 +27,14 @@ class CLNetworkManager: AFHTTPSessionManager {
         return instance
     }()
     
-    var accessToken:String? //= "2.00rc5VOCdpW2ZC252396604bs_ELsC"
-    var uid:String = "2354568521"
+    //var accessToken:String? //= "2.00rc5VOCdpW2ZC252396604bs_ELsC"
+//    var uid:String = "2354568521"
+    
+    lazy var userAccount = CLUserAccount()
+    
     
     var userLogin:Bool {
-        return accessToken != nil
+        return userAccount.access_token != nil
     }
     
     
@@ -39,8 +42,9 @@ class CLNetworkManager: AFHTTPSessionManager {
 //    MARK -  token封装
     func tokenRequest(method:CLHTTPMethod = .GET,URLString:String,parameters:[String:Any]?,completion: @escaping (_ json: Any?, _ isSuccess: Bool) ->()) {
         
-       guard let token = accessToken else {
+       guard let token = userAccount.access_token else {
         
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: CLUserShouldLoginNotification), object: nil, userInfo: nil)
             completion(nil, false)
             return
         
@@ -72,7 +76,8 @@ class CLNetworkManager: AFHTTPSessionManager {
         let failure = { (task:URLSessionDataTask?,error:Error) -> () in
         
             if (task?.response as? HTTPURLResponse)?.statusCode == 403{
-                print("token不对")
+    
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: CLUserShouldLoginNotification), object: "bad Token", userInfo: nil)
             
             }
             print("网络请求错误\(error)")
